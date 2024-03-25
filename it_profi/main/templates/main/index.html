@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block name %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <h1>Главная страница</h1>
+    {% if orders %}
+        {% for el in orders %}
+            <div class="alert alert-warning mt-2">
+                <h3>{{ el.client }}</h3>
+                <p>{{ el.phone }}</p>
+                <p>{{ el.text }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Записей в базе нет!</p>
+    {% endif %}
+{% endblock %}
