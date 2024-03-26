@@ -12,9 +12,9 @@
 </head>
 <body>
 <div class="px-4 pt-5 my-5 text-center border-bottom">
-    <h1 class="display-4 fw-bold text-body-emphasis" >{% block name %}{% endblock %}</h1>
+    <h1 class="display-4 fw-bold text-body-emphasis" >{% block name %}{% endblock %}</h1><br>
     <div>
-      <p class="card bg-primary text-white">Профессиональная компьютерная помощь</p>
+      <p class="card bg-primary text-white" style="font-size:200%">Профессиональная компьютерная помощь</p><br>
     </div>
     <div class="overflow-hidden" style="max-height: 30vh;">
         <div class="container px-5">
@@ -30,7 +30,7 @@
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'orders' %}">Все заявки</a>
       </div>
     </div>
-    <div class="container">
+    <div class="container" style="font-size:150%">
         {% block content %}{% endblock %}
     </div>
 </body>
