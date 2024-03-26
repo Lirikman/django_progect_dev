@@ -5,19 +5,16 @@
 {% endblock %}
 
 {% block name %}
-Страница создания заявки на ремонт
+Форма заявки на ремонт
 {% endblock %}
 
 {% block content %}
     <h1>Создание заявки</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.client }}
-        {{ form.phone }}
-        {{ form.text }}
-      <input type="text", placeholder="Введите ФИО" class="form-control"><br>
-      <textarea type="text", placeholder="Введите номер телефона" class="form-control"> </textarea><br>
-      <textarea type="text", placeholder="Опишите подробно проблему" class="form-control"> </textarea><br>
-      <button type="submit" class="btn btn-success">Добавить заявку</button>
+        {{ form.client }}<br>
+        {{ form.text }}<br>
+        <button type="submit" class="btn btn-success">Добавить заявку</button>
+        <span>{{error}}</span>
     </form>
 {% endblock %}
