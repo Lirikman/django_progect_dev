@@ -9,10 +9,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Создание заявки</h1>
+    <h1>Создать заявку на ремонт</h1>
+    <p class="text-danger">Все заявки выполняются в порядке очереди. Очередь заявок можно посмотреть на вкладке Все заявки.</p>
     <form method="post">
         {% csrf_token %}
         {{ form.client }}<br>
+        {{form.phone}}<br>
         {{ form.text }}<br>
         <button type="submit" class="btn btn-success">Добавить заявку</button>
         <span>{{error}}</span>
