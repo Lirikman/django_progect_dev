@@ -1,0 +1,16 @@
+body {
+    background: #B0C4DE;
+}
+
+table, td{
+  width: 800px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+td {
+   color: #0000FF;
+   padding: 5px 10px;
+   text-align: center;
+   border: 6px solid #DC143C;
+}
