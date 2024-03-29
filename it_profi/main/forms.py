@@ -1,5 +1,5 @@
-from .models import Order
-from django.forms import ModelForm, TextInput, Textarea
+from .models import Order, Problem
+from django.forms import ModelForm, TextInput, Textarea, Select, ChoiceField
 
 
 class OrderForm(ModelForm):
@@ -15,8 +15,20 @@ class OrderForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': ' Введите номер телефона'
             }),
-            'text': Textarea(attrs={
+            'text': Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите описание проблемы'
+                'placeholder': 'Выберите неполадку'
+            }),
+        }
+
+
+class ProblemForms(ModelForm):
+    class Meta:
+        model = Problem
+        fields = ["problem"]
+        widgets = {
+            'problem': TextInput(attrs={
+                'class': 'form-control',
+                'default': 'Выберите неполадку из списка'
             }),
         }

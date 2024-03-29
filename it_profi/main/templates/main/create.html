@@ -14,7 +14,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.client }}<br>
-        {{form.phone}}<br>
+        {{ form.phone }}<br>
         {{ form.text }}<br>
         <button type="submit" class="btn btn-success">Добавить заявку</button>
         <span>{{error}}</span>
