@@ -7,5 +7,8 @@ from main.models import Order
 class Command(BaseCommand):
     def handle(self, *args, **option):
         order = Order.objects.order_by('id')
-        for el in order:
-            print(str(el.id) + ' - ' + str(el.client) + ' - ' + str(el.phone) + ' - ' + str(el.text))
+        if len(order) > 0:
+            for el in order:
+                print(str(el.id) + ' - ' + str(el.client) + ' - ' + str(el.phone) + ' - ' + str(el.text))
+        else:
+            print('Заявки в БД отсутствуют!')
