@@ -1,8 +1,9 @@
+from datetime import datetime
 from django.db import models
 
 
 class Problem(models.Model):
-    problem = models.CharField('Проблема, неполадка ПК', max_length=100)
+    problem = models.TextField('Проблема, неполадка ПК', max_length=30)
 
     def __str__(self):
         return self.problem
@@ -13,10 +14,10 @@ class Problem(models.Model):
 
 
 class Order(models.Model):
-    client = models.CharField('Клиент', max_length=100)
+    client = models.CharField('Клиент', max_length=35)
     phone = models.CharField('Номер телефона', max_length=12)
-    text = models.ForeignKey(Problem, on_delete=models.CASCADE)
-#    text = models.TextField('Описание проблемы')
+    text = models.ForeignKey(Problem, on_delete=models.DO_NOTHING)
+    date = models.DateTimeField('Дата заказа', default=datetime.now)
 
     def __str__(self):
         return self.client
@@ -24,6 +25,3 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = 'Заказы'
-
-
-

@@ -30,7 +30,18 @@
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'orders' %}">Все заявки</a>
       </div>
     </div>
-    <div class="container" style="font-size:150%">
+    <div class="bg-success text-white">
+    {% if messages %}
+        <ul align="center">
+        {% for message in messages %}
+            <p style="font-size:200%">
+                {{ message }}
+            </p>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <div class="container" style="font-size:120%">
         {% block content %}{% endblock %}
     </div>
 </body>

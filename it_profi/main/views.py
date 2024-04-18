@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Order
 from .forms import OrderForm
 
@@ -17,6 +18,7 @@ def create(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Заявка успешно создана! Ожидайте звонка мастера!')
             return redirect('home')
         else:
             error = 'Данные заполнены некорректно'
@@ -30,4 +32,4 @@ def create(request):
 
 def orders(request):
     order = Order.objects.order_by('-id')
-    return render(request, 'main/orders.html', {'title': 'Все заявки', 'orders': order})
+    return render(request, 'main/orders.html', {'orders': order})

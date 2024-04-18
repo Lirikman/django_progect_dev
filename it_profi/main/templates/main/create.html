@@ -9,14 +9,18 @@
 {% endblock %}
 
 {% block content %}
+
     <h1>Создать заявку на ремонт</h1>
-    <p class="text-danger">Все заявки выполняются в порядке очереди. Очередь заявок можно посмотреть на вкладке Все заявки.</p>
+    <p class="text-danger">Все заявки выполняются в порядке очереди. Очередь заявок можно посмотреть на вкладке "Все заявки".</p>
     <form method="post">
         {% csrf_token %}
+        <p>Введите ФИО:</p>
         {{ form.client }}<br>
+        <p>Введите номер телефона:</p>
         {{ form.phone }}<br>
-        {{ form.text }}<br>
+        <p>Выберите неполадку из спиcка:</p>
+        {{ form.text }} <br>
         <button type="submit" class="btn btn-success">Добавить заявку</button>
         <span>{{error}}</span>
-    </form>
+    </form> <br>
 {% endblock %}
