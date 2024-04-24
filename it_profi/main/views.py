@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Order
+from .models import Order, Article
 from .forms import OrderForm
 
 
@@ -33,6 +33,11 @@ def create(request):
 def orders(request):
     order = Order.objects.order_by('-id')
     return render(request, 'main/orders.html', {'orders': order})
+
+
+def articles(request):
+    article = Article.objects.all()
+    return render(request, 'main/articles.html', {'articles': article})
 
 
 def articles(request):
