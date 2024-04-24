@@ -14,7 +14,7 @@ class Problem(models.Model):
 
 
 class Order(models.Model):
-    client = models.CharField('Клиент', max_length=35)
+    client = models.CharField('Клиент', max_length=40)
     phone = models.CharField('Номер телефона', max_length=12)
     text = models.ForeignKey(Problem, on_delete=models.DO_NOTHING)
     date = models.DateTimeField('Дата заказа', default=datetime.now)
@@ -25,3 +25,18 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = 'Заказы'
+
+
+class Article(models.Model):
+    name = models.CharField('Название статьи', max_length=50)
+    image = models.ImageField('Изображение', blank=True, null=True, upload_to='main')
+    text = models.TextField('Текст статьи')
+    source = models.CharField('Источник', max_length=50)
+    date = models.DateTimeField('Дата публикации', default=datetime.now)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Статьи'
+        verbose_name_plural = 'Статьи'

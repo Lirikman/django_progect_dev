@@ -25,3 +25,22 @@ class ProblemForms(ModelForm):
     class Meta:
         model = Problem
         fields = ["problem"]
+
+
+class ArticleForms(ModelForm):
+    class Meta:
+        fields = ['name', 'text', 'source']
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите Название статьи'
+            }),
+            'text': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите текст статьи'
+            }),
+            'source': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите источник статьи'
+            }),
+        }

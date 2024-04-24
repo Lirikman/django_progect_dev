@@ -33,3 +33,7 @@ def create(request):
 def orders(request):
     order = Order.objects.order_by('-id')
     return render(request, 'main/orders.html', {'orders': order})
+
+
+def articles(request):
+    return render(request, 'main/articles.html')
