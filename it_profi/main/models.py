@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+from django.urls import reverse
 
 
 class Problem(models.Model):
@@ -36,6 +37,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('single', kwargs={'id': self.pk})
 
     class Meta:
         verbose_name = 'Статьи'

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Order, Article
 from .forms import OrderForm
+from django.views.generic import DetailView
 
 
 def index(request):
@@ -40,5 +41,7 @@ def articles(request):
     return render(request, 'main/articles.html', {'articles': article})
 
 
-def articles(request):
-    return render(request, 'main/articles.html')
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'main/single.html'
+    context_object_name = 'article'
