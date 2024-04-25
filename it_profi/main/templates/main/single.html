@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ article.name }}
+{% endblock %}
+
+{% block name %}
+Полезные статьи и инструкции
+{% endblock %}
+
+{% block content %}
+    <h1>{{ article.name }}</h1>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+        <div class="container px-5">
+            <img src='{{ article.image }}' width="200px">
+        </div>
+    </div>
+    <p>{{ article.text }}
+    <p>ДАТА ПУБЛИКАЦИИ: {{ article.date }}</p>
+    <p>ИСТОЧНИК: {{ article.source }}</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'articles' %}">ВСЕ СТАТЬИ</a>
+    </div>
+{% endblock %}
