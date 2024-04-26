@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Удаление статьи
+{% endblock %}
+
+{% block name %}
+Удалить статью
+{% endblock %}
+
+{% block content %}
+    <h1>Вы точно хотите удалить статью?</h1>
+    <div class="container px-5">
+        {{object.name}}
+      <form method="post" >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">УДАЛИТЬ</button>
+      </form>
+    </div>
+    <br>
+
+{% endblock %}

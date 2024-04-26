@@ -10,14 +10,16 @@
 
 {% block content %}
     <h1>{{ article.name }}</h1>
-    <div class="overflow-hidden" style="max-height: 30vh;">
-        <div class="container px-5">
-            <img src='{{ article.image }}' width="200px">
-        </div>
+    <div class="container px-5">
+        <img src="{{article.image.url}}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="My image_1" width="300" height="200" loading="lazy">
     </div>
     <p>{{ article.text }}
-    <p>ДАТА ПУБЛИКАЦИИ: {{ article.date }}</p>
-    <p>ИСТОЧНИК: {{ article.source }}</p>
+    <p><b>ДАТА ПУБЛИКАЦИИ:</b> {{ article.date }}</p>
+    <p><b>ИСТОЧНИК:</b> {{ article.source }}</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'article_upd' article.id %}">ИЗМЕНИТЬ СТАТЬЮ</a>
+        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'article_del' article.id %}">УДАЛИТЬ СТАТЬЮ</a>
+    </div>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'articles' %}">ВСЕ СТАТЬИ</a>
     </div>

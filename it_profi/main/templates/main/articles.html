@@ -12,13 +12,15 @@
     <h1>Все статьи:</h1>
     {% if articles %}
         {% for art in articles %}
-            <div class="alert alert-warning" style="width:400px; text-align:center;">
-                <a href="{% url 'single' art.id %}"><img src='{{ art.image.url }}' width="200px"></a>
-                <h3>{{ art.name }}</h3>
+            <div class="alert alert-warning" style="width:800px; text-align:center;">
+                <a href="{% url 'single' art.id %}"><img src="{{art.image.url}}" width="200px"></a>
+                <h3><a href="{% url 'single' art.id %}" style="text-decoration: none;">{{ art.name }}</a></h3>
                 <p>{{ art.date }}</p>
             </div>
         {% endfor %}
     {% else %}
         <p>Статей в базе нет!</p>
     {% endif %}
-{% endblock %}
+    <a class="btn btn-primary btn-lg px-4 me-sm-3" style="margin-bottom: 5%; margin-left: 23%;" href="{% url 'article_create' %}">Добавить статью</a>
+
+{% endblock%}

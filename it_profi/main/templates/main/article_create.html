@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Добавление статьи
+{% endblock %}
+
+{% block name %}
+Добавить новую статью
+{% endblock %}
+
+{% block content %}
+    <h1>Новая статья</h1>
+    <div class="container px-5">
+      <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+          <button type="submit" class="btn btn-success">Добавить статью</button>
+      </form>
+    </div>
+    <br>
+{% endblock %}

@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.urls import reverse_lazy
+
 from .models import Order, Article
 from .forms import OrderForm
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
 
 
 def index(request):
@@ -45,3 +47,23 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'main/single.html'
     context_object_name = 'article'
+
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    fields = '__all__'
+    template_name = 'main/article_upd.html'
+    success_url = reverse_lazy('articles')
+
+
+class ArticleCreateView(CreateView):
+    model = Article
+    fields = '__all__'
+    template_name = 'main/article_create.html'
+    success_url = reverse_lazy('articles')
+
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    template_name = 'main/article_del.html'
+    success_url = reverse_lazy('articles')
