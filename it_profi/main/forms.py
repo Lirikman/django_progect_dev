@@ -1,5 +1,5 @@
-from .models import Order, Problem
-from django.forms import ModelForm, TextInput, Select
+from .models import Order, Problem, Article
+from django.forms import ModelForm, TextInput, Select, Textarea
 
 
 class OrderForm(ModelForm):
@@ -29,13 +29,14 @@ class ProblemForms(ModelForm):
 
 class ArticleForms(ModelForm):
     class Meta:
+        model = Article
         fields = ['name', 'text', 'source']
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите Название статьи'
             }),
-            'text': TextInput(attrs={
+            'text': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите текст статьи'
             }),
