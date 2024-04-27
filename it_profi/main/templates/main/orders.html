@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Все заявки:</h1>
+    <h1 style="margin-left: 20%;">Все заявки:</h1>
     {% if orders %}
         {% for el in orders %}
-            <div class="alert alert-warning">
+            <div style="width:700px; text-align:center;" class="alert alert-warning">
                 <h3>{{ el.client }}</h3>
                 <p>{{ el.text }}</p>
                 <p>{{ el.date }}</p>
