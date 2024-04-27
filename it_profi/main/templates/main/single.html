@@ -13,7 +13,7 @@
     <div class="container px-5">
         <img src="{{article.image.url}}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="My image_1" width="300" height="200" loading="lazy">
     </div>
-    <p>{{ article.text }}
+    <p>{{ article.text|linebreaks }}
     <p><b>ДАТА ПУБЛИКАЦИИ:</b> {{ article.date }}</p>
     <p><b>ИСТОЧНИК:</b> {{ article.source }}</p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
