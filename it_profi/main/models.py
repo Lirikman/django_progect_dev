@@ -38,9 +38,6 @@ class Article(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('single', kwargs={'id': self.pk})
-
     class Meta:
         verbose_name = 'Статьи'
         verbose_name_plural = 'Статьи'

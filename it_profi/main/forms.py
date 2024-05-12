@@ -30,7 +30,7 @@ class ProblemForms(ModelForm):
 class ArticleForms(ModelForm):
     class Meta:
         model = Article
-        fields = ['name', 'text', 'source']
+        fields = ['name', 'text', 'source', 'image']
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
