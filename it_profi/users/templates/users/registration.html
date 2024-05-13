@@ -15,6 +15,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_table }}
+        <br><br>
         <button type="submit" class="btn btn-success">Зарегистрироваться</button>
         <span>{{error}}</span>
     </form> <br>

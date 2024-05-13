@@ -20,8 +20,8 @@ class RegistrationUserForm(UserCreationForm):
         for field in self.fields:
             self.fields['username'].widget.attrs.update({'placeholder': 'Придумайте логин'})
             self.fields['email'].widget.attrs.update({'placeholder': 'Введите свой email'})
-            self.fields['first_name'].widget.attrs.update({'placeholder': 'Введите имя'})
-            self.fields['last_name'].widget.attrs.update({'placeholder': 'Введите фамилию'})
+            self.fields['first_name'].widget.attrs.update({'placeholder': 'Введите Ваше имя'})
+            self.fields['last_name'].widget.attrs.update({'placeholder': 'Введите Вашу фамилию'})
             self.fields['password1'].widget.attrs.update({'placeholder': 'Придумайте пароль'})
             self.fields['password2'].widget.attrs.update({'placeholder': 'Повторите пароль'})
             self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
