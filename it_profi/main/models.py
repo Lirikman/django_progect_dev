@@ -30,7 +30,7 @@ class Order(models.Model):
 
 class Article(models.Model):
     name = models.CharField('Название статьи', max_length=50)
-    image = models.ImageField('Изображение', blank=True, null=True, upload_to='main')
+    image = models.ImageField('Изображение', blank=True, null=True, upload_to='main', default='main/info.jpg')
     text = models.TextField('Текст статьи')
     source = models.CharField('Источник', max_length=50)
     date = models.DateTimeField('Дата публикации', default=datetime.now)

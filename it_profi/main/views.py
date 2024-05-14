@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -56,13 +57,15 @@ class ArticleUpdateView(UpdateView):
     success_url = reverse_lazy('articles')
 
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     form_class = ArticleForms
     template_name = 'main/article_create.html'
     success_url = reverse_lazy('articles')
+    login_url = 'login'
 
 
 class ArticleDeleteView(DeleteView):
     model = Article
     template_name = 'main/article_del.html'
     success_url = reverse_lazy('articles')
+
