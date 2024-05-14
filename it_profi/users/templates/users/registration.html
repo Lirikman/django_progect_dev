@@ -12,9 +12,9 @@
     <h1>Регистрация нового пользователя</h1>
     <p class="text-danger">После регистрации на сайте вы сможете создавать и отменять заявки на ремонт.</p>
     <div style="width: 700px">
-    <form method="post">
+    <form method="post" action="{% url 'register' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
         <br><br>
         <button type="submit" class="btn btn-success">Зарегистрироваться</button>
         <span>{{error}}</span>

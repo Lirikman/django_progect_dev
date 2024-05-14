@@ -10,11 +10,13 @@
 
 {% block content %}
     <h1>Вход на сайт</h1>
-    <p class="text-danger">После входа на сайт вы сможете создавать и отменять заявки на ремонт.</p>
+    <p class="text-danger">После входа на сайт у Вас появится полный функционал.</p>
+    <h2 class="text-danger" >Нет учётной записи на сайте?   <a class="btn btn-primary btn-lg px-2 me-sm-1" href="{% url 'register' %}">Зарегистрироваться</a></h2>
     <div style="width: 700px">
-    <form method="post">
+    <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
+        <br>
         <button type="submit" class="btn btn-success">Войти</button>
         <span>{{error}}</span>
     </form> <br>

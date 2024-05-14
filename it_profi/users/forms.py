@@ -1,6 +1,6 @@
 from django.forms import forms
 from .models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 class RegistrationUserForm(UserCreationForm):
@@ -24,4 +24,14 @@ class RegistrationUserForm(UserCreationForm):
             self.fields['last_name'].widget.attrs.update({'placeholder': 'Введите Вашу фамилию'})
             self.fields['password1'].widget.attrs.update({'placeholder': 'Придумайте пароль'})
             self.fields['password2'].widget.attrs.update({'placeholder': 'Повторите пароль'})
+            self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+
+
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields['username'].widget.attrs['placeholder']= 'Логин пользователя'
+            self.fields['password'].widget.attrs['placeholder'] = 'Пароль пользователя'
+            self.fields['username'].label = 'Логин'
             self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
