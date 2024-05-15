@@ -36,8 +36,7 @@ def create(request):
 
 def orders(request):
     order = Order.objects.order_by('id')
-    all_id = [x.id for x in Order.objects.all()]
-    return render(request, 'main/orders.html', {'orders': order, 'id': all_id})
+    return render(request, 'main/orders.html', {'orders': order})
 
 
 def articles(request):
