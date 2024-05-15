@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, LogoutView
@@ -6,14 +7,14 @@ from .forms import RegistrationUserForm, UserLoginForm
 
 
 # Create your views here.
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = UserLoginForm
     template_name = 'users/login.html'
     next_page = 'home'
     success_message = 'Добро пожаловать на сайт!'
 
 
-class UserCreateView(CreateView):
+class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
     template_name = 'users/registration.html'
     form_class = RegistrationUserForm

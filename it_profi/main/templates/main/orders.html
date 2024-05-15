@@ -13,7 +13,7 @@
     {% if orders %}
         {% for el in orders %}
             <div style="width:700px; text-align:center;" class="alert alert-warning">
-                <h3>{{ el.client }}</h3>
+                <h3>{{ el.id }}. <a>{{el.client}}</a></h3>
                 <p>{{ el.text }}</p>
                 <p>{{ el.date }}</p>
             </div>

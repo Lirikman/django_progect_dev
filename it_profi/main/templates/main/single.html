@@ -20,6 +20,7 @@
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'article_upd' article.id %}">ИЗМЕНИТЬ СТАТЬЮ</a>
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'article_del' article.id %}">УДАЛИТЬ СТАТЬЮ</a>
+        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'articles' %}">ВСЕ СТАТЬИ</a>
     </div>
     {% else %}
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
