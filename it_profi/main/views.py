@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Order, Article
 from .forms import OrderForm, ArticleForms
-from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
 
 
 def index(request):
@@ -39,9 +39,10 @@ def orders(request):
     return render(request, 'main/orders.html', {'orders': order})
 
 
-def articles(request):
-    article = Article.objects.all()
-    return render(request, 'main/articles.html', {'articles': article})
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'main/articles.html'
+    context_object_name = 'articles'
 
 
 class ArticleDetailView(DetailView):
