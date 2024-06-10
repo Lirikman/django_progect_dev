@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Order, Article
-from .forms import OrderForm, ArticleForms
+from .forms import OrderForm, ArticleForm
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
 
 
@@ -53,14 +53,14 @@ class ArticleDetailView(DetailView):
 
 class ArticleUpdateView(SuccessMessageMixin, UpdateView):
     model = Article
-    form_class = ArticleForms
+    form_class = ArticleForm
     template_name = 'main/article_upd.html'
     success_url = reverse_lazy('articles')
     success_message = 'Статья успешно обновлена!'
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    form_class = ArticleForms
+    form_class = ArticleForm
     template_name = 'main/article_create.html'
     success_url = reverse_lazy('articles')
     login_url = 'login'

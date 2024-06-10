@@ -21,13 +21,13 @@ class OrderForm(ModelForm):
         }
 
 
-class ProblemForms(ModelForm):
+class ProblemForm(ModelForm):
     class Meta:
         model = Problem
         fields = ["problem"]
 
 
-class ArticleForms(ModelForm):
+class ArticleForm(ModelForm):
     class Meta:
         model = Article
         fields = ['name', 'text', 'source', 'image']
