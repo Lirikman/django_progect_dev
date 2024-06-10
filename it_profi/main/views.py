@@ -67,8 +67,9 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = 'Статья успешно добавлена!'
 
 
-class ArticleDeleteView(SuccessMessageMixin, DeleteView):
+class ArticleDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Article
     template_name = 'main/article_del.html'
     success_url = reverse_lazy('articles')
+    login_url = 'login'
     success_message = 'Статья успешно удалена!'
