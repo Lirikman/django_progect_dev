@@ -9,16 +9,31 @@
 {% endblock %}
 
 {% block content %}
-    <h1 style="margin-left: 20%;">Все заявки:</h1>
-    {% if orders %}
-        {% for el in orders %}
-            <div style="width:700px; text-align:center;" class="alert alert-warning">
-                <h3>{{ el.id }}. <a>{{el.client}}</a></h3>
-                <p>{{ el.text }}</p>
-                <p>{{ el.date }}</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Записей в базе нет!</p>
-    {% endif %}
+    <h1 style="margin-left: 20%">Все заявки:</h1>
+    <div>
+        {% if orders %}
+            {% for el in orders %}
+                <div style="width:700px; text-align:center;" class="alert alert-warning">
+                    <h3>{{ el.id }}. <a>{{el.client}}</a></h3>
+                    <p>{{ el.text }}</p>
+                    <p>{{ el.date }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Записей в базе нет!</p>
+        {% endif %}
+    </div>
+    <div class="pagination">
+        <span style="width:700px; text-align:center; class="step-links">
+            {% if orders.has_previous %}
+                <a href="?page={{ orders.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            <span class="current">
+                Страница {{ orders.number }} из {{ orders.paginator.num_pages }}.
+            </span>
+            {% if orders.has_next %}
+                <a href="?page={{ orders.next_page_number }}">Следующая</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}

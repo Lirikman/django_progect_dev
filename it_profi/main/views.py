@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -36,6 +37,14 @@ def create(request):
 
 def orders(request):
     order = Order.objects.order_by('id')
+    paginator = Paginator(order, 5)
+    page = request.GET.get('page')
+    try:
+        order = paginator.page(page)
+    except PageNotAnInteger:
+        order = paginator.page(1)
+    except EmptyPage:
+        order = paginator.page(paginator.num_pages)
     return render(request, 'main/orders.html', {'orders': order})
 
 
@@ -43,6 +52,7 @@ class ArticleListView(ListView):
     model = Article
     template_name = 'main/articles.html'
     context_object_name = 'articles'
+    paginate_by = 2
 
 
 class ArticleDetailView(DetailView):

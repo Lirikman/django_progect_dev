@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Все статьи:</h1>
+    <h1 style="margin-left: 20%">Все статьи:</h1>
     {% if articles %}
         {% for art in articles %}
             <div class="alert alert-warning" style="width:800px; text-align:center;">
@@ -22,5 +22,19 @@
         <p>Статей в базе нет!</p>
     {% endif %}
     <a class="btn btn-primary btn-lg px-4 me-sm-3" style="margin-bottom: 5%; margin-left: 23%;" href="{% url 'article_create' %}">Добавить статью</a>
-
+    <div class="pagination_art">
+        <span style="text-align:center; class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            <span class="current" >
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock%}
