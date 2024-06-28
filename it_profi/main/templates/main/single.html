@@ -15,7 +15,7 @@
     </div>
     <p>{{ article.text|linebreaks }}
     <p><b>ДАТА ПУБЛИКАЦИИ:</b> {{ article.date }}</p>
-    <p><b>ИСТОЧНИК:</b> {{ article.source }}</p>
+    <p><b>ИСТОЧНИК:</b> <a href = {{article.source}}>Ссылка на источник</a></p>
     {% if request.user.is_authenticated %}
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'article_upd' article.id %}">ИЗМЕНИТЬ СТАТЬЮ</a>

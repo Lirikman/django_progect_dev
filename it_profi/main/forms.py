@@ -3,6 +3,10 @@ from django.forms import ModelForm, TextInput, Select, Textarea
 
 
 class OrderForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['text'].queryset = Problem.active_objects.all()
+
     class Meta:
         model = Order
         fields = ["client", "phone", "text"]
