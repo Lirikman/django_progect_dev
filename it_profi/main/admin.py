@@ -11,7 +11,7 @@ class ClientsAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['name', 'text', 'date', 'is_active']
+    list_display = ['name', 'text', 'source', 'date', 'is_active']
     actions = [set_active]
 
 

@@ -10,29 +10,31 @@
 
 {% block content %}
     <h1 style="margin-left: 20%">Все заявки:</h1>
-    <div>
-        {% if orders %}
-            {% for el in orders %}
+    {% if orders %}
+        {% for el in orders %}
+            {% with el=el num=orders.start_index|add:forloop.counter0 %}
                 <div style="width:700px; text-align:center;" class="alert alert-warning">
-                    <h3>{{ el.id }}. <a>{{el.client}}</a></h3>
+                    <h3>{{num}}. {{ el.client }}</h3>
                     <p>{{ el.text }}</p>
                     <p>{{ el.date }}</p>
                 </div>
-            {% endfor %}
-        {% else %}
-            <p>Записей в базе нет!</p>
-        {% endif %}
-    </div>
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        <p>Записей в базе нет!</p>
+    {% endif %}
     <div class="pagination">
-        <span style="width:700px; text-align:center; class="step-links">
+        <span style="width:900px; text-align:center; class="step-links">
+            <div class="current">
+                Страница {{ orders.number }} из {{ orders.paginator.num_pages }}.
+            </div>
             {% if orders.has_previous %}
+                <a href="?page=1">Первая</a>
                 <a href="?page={{ orders.previous_page_number }}">Предыдущая</a>
             {% endif %}
-            <span class="current">
-                Страница {{ orders.number }} из {{ orders.paginator.num_pages }}.
-            </span>
             {% if orders.has_next %}
                 <a href="?page={{ orders.next_page_number }}">Следующая</a>
+                <a href="?page={{ orders.paginator.num_pages }}">Последняя</a>
             {% endif %}
         </span>
     </div>

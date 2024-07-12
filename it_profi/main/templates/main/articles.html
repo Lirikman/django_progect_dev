@@ -22,18 +22,18 @@
         <p>Статей в базе нет!</p>
     {% endif %}
     <a class="btn btn-primary btn-lg px-4 me-sm-3" style="margin-bottom: 5%; margin-left: 23%;" href="{% url 'article_create' %}">Добавить статью</a>
-    <div class="pagination_art">
-        <span style="text-align:center; class="step-links">
+    <div class="pagination">
+        <span style="width:900px; text-align:center; class="step-links">
+            <div class="current" >
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </div>
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page=1">Первая</a>
                 <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
             {% endif %}
-            <span class="current" >
-                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
-            </span>
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
             {% endif %}
         </span>
     </div>
