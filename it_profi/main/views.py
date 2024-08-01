@@ -1,6 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -55,7 +56,7 @@ class ArticleListView(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return Article.active_objects.all()
+        return Article.active_objects.select_related('user').all()
 
 
 class ArticleDetailView(DetailView):
@@ -64,12 +65,16 @@ class ArticleDetailView(DetailView):
     context_object_name = 'article'
 
 
-class ArticleUpdateView(SuccessMessageMixin, UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Article
     form_class = ArticleForm
     template_name = 'main/article_upd.html'
     success_url = reverse_lazy('articles')
     success_message = 'Статья успешно обновлена!'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -77,12 +82,23 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'main/article_create.html'
     success_url = reverse_lazy('articles')
     login_url = 'login'
-    success_message = 'Статья успешно добавлена!'
+    success_message = 'Статья будет добавлена на сайт после проверки Администратором!'
+
+    # Функция для кастомной валидации полей формы модели
+    def form_valid(self, form):
+        fields = form.save(commit=False)
+        fields.user = self.request.user
+        fields.save()
+        return super().form_valid(form)
 
 
-class ArticleDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Article
     template_name = 'main/article_del.html'
     success_url = reverse_lazy('articles')
     login_url = 'login'
     success_message = 'Статья успешно удалена!'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user

@@ -1,5 +1,7 @@
+from django.http import request
+
 from .models import Order, Problem, Article
-from django.forms import ModelForm, TextInput, Select, Textarea
+from django.forms import ModelForm, TextInput, Select, Textarea, HiddenInput
 
 
 class OrderForm(ModelForm):
@@ -34,7 +36,7 @@ class ProblemForm(ModelForm):
 class ArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = ['name', 'text', 'source', 'image']
+        fields = ['name', 'text', 'image']
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
@@ -43,9 +45,5 @@ class ArticleForm(ModelForm):
             'text': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите текст статьи'
-            }),
-            'source': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите источник статьи'
             }),
         }

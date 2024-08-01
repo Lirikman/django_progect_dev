@@ -2,6 +2,7 @@ from datetime import datetime
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from users.models import User
 
 
 class ActiveManager(models.Manager):
@@ -48,8 +49,8 @@ class Article(IsActiveMixin, models.Model):
     name = models.CharField('Название статьи', max_length=50)
     image = models.ImageField('Изображение', blank=True, null=True, upload_to='main', default='main/info.jpg')
     text = models.TextField('Текст статьи')
-    source = models.CharField('Источник', max_length=100)
     date = models.DateTimeField('Дата публикации', default=datetime.now)
+    user = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
