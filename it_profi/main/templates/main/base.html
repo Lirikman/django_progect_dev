@@ -9,9 +9,17 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <script src="{% static 'main/js/script.js' %}"></script>
 </head>
 <body>
 <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <div align="right">
+        <label class="label_color">Изменить цвет сайта:</label>
+        <button class="pink" type="button" onclick="changeBodyBg('#FFB6C1');">Розовый</button>
+        <button class="blue" type="button" onclick="changeBodyBg('#00BFFF');">Голубой</button>
+        <button class="orange" type="button" onclick="changeBodyBg('#FFDAB9');">Оранжевый</button>
+        <button class="grey" type="button" onclick="changeBodyBg('#B0C4DE');">Серый</button>
+    </div>
     <h1 class="display-4 fw-bold text-body-emphasis" >{% block name %}{% endblock %}</h1><br>
     <div>
       <p class="card bg-primary text-white" style="font-size:200%">Компьютерная помощь любой сложности</p><br>

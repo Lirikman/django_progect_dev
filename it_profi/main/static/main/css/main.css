@@ -1,5 +1,37 @@
 body {
+   background: #B0C4DE;
+}
+
+.pink {
+    background: #FFC0CB;
+    font-family: Luminari;
+    font-weight: 800;
+}
+
+.blue {
+    background: #00BFFF;
+    font-family: Luminari;
+    font-weight: 800;
+}
+
+.orange {
+    background: #FFDAB9;
+    font-family: Luminari;
+    font-weight: 800;
+}
+
+.grey {
     background: #B0C4DE;
+    font-family: Luminari;
+    font-weight: 800;
+}
+
+.label_color {
+    color: #DC143C;
+    font-family: fantasy;
+    font-style: oblique;
+    font-size: 22px;
+    font-weight: 200;
 }
 
 table, td{
