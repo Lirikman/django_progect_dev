@@ -1,13 +1,12 @@
 from datetime import datetime
 
 from rest_framework import serializers
-from .models import Article, Problem
+from .models import Article, Problem, Clients, Order
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    is_active = serializers.HiddenField(default=False)
-    date = serializers.HiddenField(default=datetime.now)
+    image = serializers.ImageField(default='main/info.jpg')
 
     class Meta:
         model = Article
@@ -17,4 +16,18 @@ class ArticleSerializer(serializers.ModelSerializer):
 class ProblemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
+        fields = '__all__'
+
+
+class OrdersSerializer(serializers.ModelSerializer):
+    problem = serializers.SlugRelatedField(queryset=Problem.active_objects.all(), slug_field='problem')
+
+    class Meta:
+        model = Order
+        fields = ('id', 'client', 'phone', 'problem', 'is_active')
+
+
+class ClientsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Clients
         fields = '__all__'

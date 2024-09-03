@@ -13,9 +13,9 @@
     {% if orders %}
         {% for el in orders %}
             {% with el=el num=orders.start_index|add:forloop.counter0 %}
-                <div style="width:700px; text-align:center;" class="alert alert-warning">
+                <div style="width:800px; text-align:center;" class="alert alert-warning">
                     <h3>{{num}}. {{ el.client }}</h3>
-                    <p>{{ el.text }}</p>
+                    <p>{{ el.problem }}</p>
                     <p>{{ el.date }}</p>
                 </div>
             {% endwith %}

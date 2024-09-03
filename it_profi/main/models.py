@@ -2,7 +2,9 @@ from datetime import datetime
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 from users.models import User
+from it_profi import settings
 
 
 class ActiveManager(models.Manager):
@@ -14,7 +16,7 @@ class ActiveManager(models.Manager):
 class IsActiveMixin(models.Model):
     objects = models.Manager()
     active_objects = ActiveManager()
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False, verbose_name='Опубликовано')
 
     class Meta():
         abstract = True
@@ -34,7 +36,7 @@ class Problem(IsActiveMixin, models.Model):
 class Order(IsActiveMixin, models.Model):
     client = models.CharField('Клиент', max_length=40)
     phone = models.CharField('Номер телефона', max_length=12)
-    text = models.ForeignKey(Problem, on_delete=models.DO_NOTHING)
+    problem = models.ForeignKey(Problem, on_delete=models.DO_NOTHING, verbose_name='Неполадка')
     date = models.DateTimeField('Дата заказа', default=datetime.now)
 
     def __str__(self):
@@ -75,3 +77,9 @@ class Clients(models.Model):
 @receiver(post_save, sender=Order)
 def add_order(sender, instance, **kwargs):
     Clients.objects.create(client=instance, phone=instance.phone)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

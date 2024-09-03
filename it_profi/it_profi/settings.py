@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'users',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [

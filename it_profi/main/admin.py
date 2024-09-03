@@ -16,7 +16,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['client', 'phone', 'text', 'date', 'is_active']
+    list_display = ['client', 'phone', 'problem', 'date', 'is_active']
     actions = [set_active]
 
 

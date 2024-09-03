@@ -7,11 +7,11 @@ from django.forms import ModelForm, TextInput, Select, Textarea, HiddenInput
 class OrderForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['text'].queryset = Problem.active_objects.all()
+        self.fields['problem'].queryset = Problem.active_objects.all()
 
     class Meta:
         model = Order
-        fields = ["client", "phone", "text"]
+        fields = ["client", "phone", "problem"]
         widgets = {
             'client': TextInput(attrs={
                 'class': 'form-control',
@@ -21,7 +21,7 @@ class OrderForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Например: +70000000000'
             }),
-            'text': Select(attrs={
+            'problem': Select(attrs={
                 'class': 'form-control',
             }),
         }

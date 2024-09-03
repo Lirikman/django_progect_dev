@@ -37,7 +37,7 @@ def create(request):
 
 
 def orders(request):
-    order = Order.active_objects.select_related('text').order_by('id')
+    order = Order.active_objects.select_related('problem').order_by('id')
     paginator = Paginator(order, 5)
     page = request.GET.get('page')
     try:

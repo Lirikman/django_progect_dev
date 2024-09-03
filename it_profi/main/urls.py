@@ -1,12 +1,14 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from rest_framework import routers
-from .views_api import ArticleApiView, ProblemApiView
-
+from .views_api import ArticleApiView, ProblemApiView, ClientsApiView, OrdersApiView
 
 router = routers.DefaultRouter()
 router.register('article', ArticleApiView)
 router.register('problem', ProblemApiView)
+router.register('order', OrdersApiView)
+router.register('clients', ClientsApiView)
+
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -21,4 +23,7 @@ urlpatterns = [
     path('article_del/<int:pk>', views.ArticleDeleteView.as_view(), name='article_del'),
     path('api/v1/auth/', include('rest_framework.urls')),
     path('api/v1/', include(router.urls)),
+    path('api/v1/auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
+
 ]
