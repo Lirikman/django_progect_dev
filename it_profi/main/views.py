@@ -56,7 +56,7 @@ class ArticleListView(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return Article.active_objects.select_related('user').all()
+        return Article.active_objects.select_related('user').order_by('id')
 
 
 class ArticleDetailView(DetailView):
